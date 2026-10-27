@@ -1,0 +1,13 @@
+/* Android Auto head-unit certificate and private key (copy to aa_cert.h and fill in).
+ * The phone verifies the HU certificate against Google's Automotive Link root, so a self-signed one will not work.
+ * The widely known "JVC Kenwood" pair (issued by Google Automotive Link, valid until 2045) is in aasdk:
+ * src/Messenger/Cryptor.cpp (certificate_ / privateKey_). aa_cert.h is git-ignored - do not commit it. */
+static const char AA_CERT[] =
+    "-----BEGIN CERTIFICATE-----\n"
+    "...\n"
+    "-----END CERTIFICATE-----\n";
+
+static const char AA_KEY[] =
+    "-----BEGIN RSA PRIVATE KEY-----\n"
+    "...\n"
+    "-----END RSA PRIVATE KEY-----\n";

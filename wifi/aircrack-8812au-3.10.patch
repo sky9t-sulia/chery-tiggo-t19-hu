@@ -1,0 +1,50 @@
+diff --git a/include/osdep_service_linux.h b/include/osdep_service_linux.h
+index 684d685..9e04086 100644
+--- a/include/osdep_service_linux.h
++++ b/include/osdep_service_linux.h
+@@ -540,4 +540,18 @@ extern struct net_device *rtw_alloc_etherdev(int sizeof_priv);
+ #define STRUCT_PACKED __attribute__ ((packed))
+ 
+ 
++
++/* tiggo: building for the NXP 3.10.53 kernel - constants from newer kernels (monitor/radiotap, channel width) */
++#if (LINUX_VERSION_CODE < KERNEL_VERSION(3, 11, 0))
++#define NL80211_CHAN_WIDTH_5	((enum nl80211_chan_width)100)
++#define NL80211_CHAN_WIDTH_10	((enum nl80211_chan_width)101)
++#endif
++#ifndef IEEE80211_RADIOTAP_MCS_HAVE_STBC
++#define IEEE80211_RADIOTAP_MCS_HAVE_STBC	0x20
++#define IEEE80211_RADIOTAP_MCS_STBC_MASK	0x60
++#define IEEE80211_RADIOTAP_MCS_STBC_SHIFT	5
++#endif
++#ifndef IEEE80211_RADIOTAP_CODING_LDPC_USER0
++#define IEEE80211_RADIOTAP_CODING_LDPC_USER0	0x01
++#endif
+ #endif
+diff --git a/os_dep/linux/ioctl_cfg80211.c b/os_dep/linux/ioctl_cfg80211.c
+index ec47e95..88a1b0b 100644
+--- a/os_dep/linux/ioctl_cfg80211.c
++++ b/os_dep/linux/ioctl_cfg80211.c
+@@ -1195,6 +1195,14 @@ check_bss:
+ 		#endif
+ 
+ 		if (check_fwstate(pmlmepriv, WIFI_MONITOR_STATE) != _TRUE) {
++		#if LINUX_VERSION_CODE < KERNEL_VERSION(4, 1, 0)   /* tiggo: kernel 3.10 - no cfg80211_get_bss/connect_bss */
++                        cfg80211_connect_result(wdev_to_ndev(pwdev), cur_network->network.MacAddress
++                                , pmlmepriv->assoc_req + sizeof(struct rtw_ieee80211_hdr_3addr) + 2
++                                , pmlmepriv->assoc_req_len - sizeof(struct rtw_ieee80211_hdr_3addr) - 2
++                                , pmlmepriv->assoc_rsp + sizeof(struct rtw_ieee80211_hdr_3addr) + 6
++                                , pmlmepriv->assoc_rsp_len - sizeof(struct rtw_ieee80211_hdr_3addr) - 6
++                                , WLAN_STATUS_SUCCESS, GFP_ATOMIC);
++		#else
+                         struct cfg80211_bss *bss;
+                         bss = cfg80211_get_bss(pwdev->wiphy, NULL, cur_network->network.MacAddress, NULL, 0,
+                                 IEEE80211_BSS_TYPE_ANY, IEEE80211_PRIVACY_ANY);
+@@ -1214,6 +1222,7 @@ check_bss:
+                                 , pmlmepriv->assoc_rsp_len - sizeof(struct rtw_ieee80211_hdr_3addr) - 6
+                                 , WLAN_STATUS_SUCCESS, GFP_ATOMIC);
+ 		#endif
++		#endif /* tiggo: < 4.1 */
+                 }
+ 		#if LINUX_VERSION_CODE < KERNEL_VERSION(3, 11, 0) || defined(COMPAT_KERNEL_RELEASE)
+ 		RTW_INFO("pwdev->sme_state(a)=%d\n", pwdev->sme_state);

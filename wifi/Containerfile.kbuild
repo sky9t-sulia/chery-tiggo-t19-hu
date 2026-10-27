@@ -1,0 +1,4 @@
+# building modules for the HU kernel (NXP 3.10.53): gcc 4.8 - as used by the HU kernel vendor (kernel 3.10 does not build with recent gcc)
+FROM docker.io/library/ubuntu:16.04
+RUN apt-get update && apt-get install -y --no-install-recommends gcc-4.8-arm-linux-gnueabihf make bc libc6-dev gcc binutils-arm-linux-gnueabihf python3 && rm -rf /var/lib/apt/lists/* \
+ && ln -s /usr/bin/arm-linux-gnueabihf-gcc-4.8 /usr/bin/arm-linux-gnueabihf-gcc

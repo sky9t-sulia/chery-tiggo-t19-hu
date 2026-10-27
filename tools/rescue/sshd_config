@@ -1,0 +1,13 @@
+# HU sshd (tiggo-rescue): only from the tunnel (localhost), only with the PC key; files in RAM (/dev/tiggo)
+Port 22
+ListenAddress 127.0.0.1
+HostKey /dev/tiggo/host_key
+AuthorizedKeysFile /dev/tiggo/authorized_keys
+PermitRootLogin without-password
+PasswordAuthentication no
+ChallengeResponseAuthentication no
+PermitEmptyPasswords no
+UsePrivilegeSeparation no
+StrictModes no
+PidFile /dev/tiggo/sshd.pid
+Subsystem sftp /usr/lib/openssh/sftp-server

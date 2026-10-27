@@ -1,0 +1,293 @@
+# UI translations: English (the key - exactly as in the code) <TAB> Ukrainian <TAB> Russian.
+# Phrases with a number (%d): forms separated by "|" - one | few (2-4) | many (5-20); the English key has a single form.
+# Генерация: python3 tools/make_i18n.py tools/i18n.tsv > src/i18n_tab.h
+Music	Музика	Музыка
+Video	Відео	Видео
+Radio	Радіо	Радио
+Rear Camera	Камера	Камера
+Phone	Телефон	Телефон
+USB Files	Файли USB	Файлы USB
+Lua Apps	Програми Lua	Программы Lua
+Bluetooth	Bluetooth	Bluetooth
+Sound	Звук	Звук
+Display	Екран	Экран
+Vehicle	Автомобіль	Автомобиль
+Guidelines	Розмітка	Разметка
+Rear camera	Камера заднього виду	Камера заднего вида
+Normal	Норма	Обычный
+Wide	Широко	Широкий
+Camera feed	Зображення камери	Изображение камеры
+USB music	Музика з USB	Музыка с USB
+Phone audio	Звук телефону	Звук телефона
+Nothing playing	Нічого не грає	Ничего не играет
+Choose what to listen to	Оберіть, що слухати	Выберите, что слушать
+No music on the USB drive · connect a phone	На флешці немає музики · підключіть телефон	На флешке нет музыки · подключите телефон
+Connect a phone or insert a USB drive	Підключіть телефон або вставте флешку	Подключите телефон или вставьте флешку
+%d songs	%d пісня|%d пісні|%d пісень	%d песня|%d песни|%d песен
+No music files	Немає музичних файлів	Нет музыкальных файлов
+Not connected	Не підключено	Не подключено
+Tap to play	Торкніться, щоб грати	Нажмите, чтобы играть
+Music · %s	Музика · %s	Музыка · %s
+Turn on	Увімкнути	Включить
+OFF	ВИМК	ВЫКЛ
+kHz	кГц	кГц
+MHz	МГц	МГц
+Connections	Підключення	Подключения
+Photos · USB	Фото · USB	Фото · USB
+Internet	Інтернет	Интернет
+USB drive · %.1f GB free	Флешка · вільно %.1f ГБ	Флешка · свободно %.1f ГБ
+%s · Tethering	%s · Роздача інтернету	%s · Раздача интернета
+Off	Вимк	Выкл
+%s · Connected	%s · Підключено	%s · Подключено
+On · No device connected	Увімк. · Пристрій не підключено	Вкл. · Устройство не подключено
+Online · USB tethering	В мережі · USB-модем	В сети · USB-модем
+Offline	Не в мережі	Не в сети
+From USB	З USB	С USB
+Accent color	Колір акценту	Цвет акцента
+Brightness	Яскравість	Яркость
+Theme	Тема	Тема
+Light	Світла	Светлая
+Dark	Темна	Тёмная
+Auto	Авто	Авто
+Auto · day	Авто · день	Авто · день
+Auto · night	Авто · ніч	Авто · ночь
+Wallpaper	Шпалери	Обои
+Screen brightness	Яскравість екрана	Яркость экрана
+%d apps · USB drive › apps	%d програма · флешка › apps|%d програми · флешка › apps|%d програм · флешка › apps	%d программа · флешка › apps|%d программы · флешка › apps|%d программ · флешка › apps
+USB drive not connected	Флешку не підключено	Флешка не подключена
+No USB drive	Немає флешки	Нет флешки
+Insert a USB drive with .lua apps to run them.	Вставте флешку з програмами .lua, щоб запустити їх.	Вставьте флешку с программами .lua, чтобы запустить их.
+No music source	Немає джерела музики	Нет источника музыки
+Connect your phone or add music to the USB drive.	Підключіть телефон або додайте музику на флешку.	Подключите телефон или добавьте музыку на флешку.
+Connect your phone or plug in a USB drive to start playing.	Підключіть телефон або вставте флешку, щоб почати.	Подключите телефон или вставьте флешку, чтобы начать.
+No music on USB	Немає музики на USB	Нет музыки на USB
+Insert a USB drive	Вставте флешку	Вставьте флешку
+Add MP3, FLAC, AAC, WAV	Додайте MP3, FLAC, AAC, WAV	Добавьте MP3, FLAC, AAC, WAV
+Connect a phone	Підключіть телефон	Подключите телефон
+Open Bluetooth settings	Налаштування Bluetooth	Настройки Bluetooth
+Bluetooth is off · open settings	Bluetooth вимкнено · відкрийте налаштування	Bluetooth выключен · откройте настройки
+Now Playing	Зараз грає	Сейчас играет
+Playlist	Список	Список
+%d songs · USB drive	%d пісня · флешка|%d пісні · флешка|%d пісень · флешка	%d песня · флешка|%d песни · флешка|%d песен · флешка
+Jan	січ	янв
+Feb	лют	фев
+Mar	бер	мар
+Apr	кві	апр
+May	тра	мая
+Jun	чер	июн
+Jul	лип	июл
+Aug	сер	авг
+Sep	вер	сен
+Oct	жов	окт
+Nov	лис	ноя
+Dec	гру	дек
+Added %d %s %d · %s	Додано %d %s %d · %s	Добавлено %d %s %d · %s
+Date	Дата	Дата
+A–Z	А–Я	А–Я
+Sun	Нд	Вс
+Mon	Пн	Пн
+Tue	Вт	Вт
+Wed	Ср	Ср
+Thu	Чт	Чт
+Fri	Пт	Пт
+Sat	Сб	Сб
+Yesterday	Вчора	Вчера
+Home	Дім	Дом
+Work	Робота	Работа
+Mobile	Мобільний	Мобильный
+Missed	Пропущений	Пропущенный
+Recents	Недавні	Недавние
+Contacts	Контакти	Контакты
+Enter number	Введіть номер	Введите номер
+Mute	Без звуку	Без звука
+Speakers	Динаміки	Динамики
+End	Завершити	Завершить
+Unknown	Невідомий	Неизвестный
+Calling…	Виклик…	Вызов…
+No phone connected	Телефон не підключено	Телефон не подключён
+Europe	Європа	Европа
+USA	США	США
+Latin America	Латинська Америка	Латинская Америка
+Asia	Азія	Азия
+Radio off	Радіо вимкнено	Радио выключено
+Favorite	Обране	Избранное
+FM radio	FM-радіо	FM-радио
+%s radio	%s-радіо	%s-радио
+Full · 20 of 20	Заповнено · 20 з 20	Заполнено · 20 из 20
+Removed	Видалено	Удалено
+Added	Додано	Добавлено
+Scan	Пошук	Поиск
+Cancel	Скасувати	Отмена
+Scanning %s	Пошук %s	Поиск %s
+Seeking up	Пошук вгору	Поиск вверх
+Seeking down	Пошук вниз	Поиск вниз
+Stop	Стоп	Стоп
+Find stations	Знайти станції	Найти станции
+No stations found	Станцій не знайдено	Станции не найдены
+No favorites yet	Обраного поки немає	Избранного пока нет
+Scan sweeps the whole %s band (about 20 s) and lists up to 40 stations.	Пошук проходить увесь діапазон %s (близько 20 с) і показує до 40 станцій.	Поиск проходит весь диапазон %s (около 20 с) и показывает до 40 станций.
+Check the antenna, or try again somewhere with better reception.	Перевірте антену або спробуйте там, де кращий прийом.	Проверьте антенну или попробуйте там, где приём лучше.
+Tap the heart next to a station to save it here. Up to 20 per band.	Торкніться сердечка біля станції, щоб зберегти її тут. До 20 на діапазон.	Нажмите на сердечко рядом со станцией, чтобы сохранить её здесь. До 20 на диапазон.
+Scan %s	Пошук %s	Поиск %s
+Scan again	Шукати знову	Искать снова
+Scanning FM	Пошук FM	Поиск FM
+Favorites · %s	Обране · %s	Избранное · %s
+Tap the heart to save the station you’re on	Торкніться сердечка, щоб зберегти поточну станцію	Нажмите на сердечко, чтобы сохранить текущую станцию
+Playing · all favorites	Грає · усе обране	Играет · всё избранное
+All favorites	Усе обране	Всё избранное
+Tap the heart to add more	Торкніться сердечка, щоб додати ще	Нажмите на сердечко, чтобы добавить ещё
+Stations %d	Станції %d	Станции %d
+Stations	Станції	Станции
+Favorites %d	Обране %d	Избранное %d
+Favorites	Обране	Избранное
+Found %d · %d%%	Знайдено %d · %d%%	Найдено %d · %d%%
+Radio is off	Радіо вимкнено	Радио выключено
+Tap to resume %s %s %s	Торкніться, щоб продовжити %s %s %s	Нажмите, чтобы продолжить %s %s %s
+Radio region	Регіон радіо	Регион радио
+Sets the FM/AM range and tuning step	Задає діапазон FM/AM і крок налаштування	Задаёт диапазон FM/AM и шаг настройки
+FM %s–%s · AM %d–%d kHz	FM %s–%s · AM %d–%d кГц	FM %s–%s · AM %d–%d кГц
+Disconnect	Від'єднати	Отключить
+Connect	Підключити	Подключить
+Searching	Пошук	Поиск
+Search	Шукати	Искать
+This device	Цей пристрій	Это устройство
+Discoverable	Видимий	Видимое
+Visible · %s	Видимий · %s	Видимо · %s
+Hidden	Прихований	Скрыто
+Paired devices	Сполучені пристрої	Сопряжённые устройства
+Connecting…	Підключення…	Подключение…
+Connected	Підключено	Подключено
+No paired devices	Немає сполучених пристроїв	Нет сопряжённых устройств
+Available devices	Доступні пристрої	Доступные устройства
+Pairing…	Сполучення…	Сопряжение…
+Tap to pair	Торкніться, щоб сполучити	Нажмите, чтобы сопрячь
+Bluetooth is off	Bluetooth вимкнено	Bluetooth выключен
+Searching…	Пошук…	Поиск…
+No devices found	Пристроїв не знайдено	Устройства не найдены
+General	Загальні	Общие
+Equalizer	Еквалайзер	Эквалайзер
+Volume	Гучність	Громкость
+Key tone	Звук натискань	Звук нажатий
+Click when you tap the screen	Клацання при дотику до екрана	Щелчок при касании экрана
+Speed volume	Від швидкості	От скорости
+Low	Низ.	Низ.
+Middle	Сер.	Сред.
+High	Вис.	Выс.
+Media volume	Гучність медіа	Громкость медиа
+Phone volume	Гучність телефону	Громкость телефона
+Default volume	Гучність при запуску	Громкость при запуске
+Bass	Низькі	Низкие
+Treble	Високі	Высокие
+Folder	Папка	Папка
+Audio	Аудіо	Аудио
+Image	Зображення	Изображение
+Lua script	Скрипт Lua	Скрипт Lua
+Document	Документ	Документ
+Manifest	Маніфест	Манифест
+Videos	Відео	Видео
+Images	Зображення	Изображения
+USB drive › %s	Флешка › %s	Флешка › %s
+USB drive	Флешка	Флешка
+Other	Інше	Другое
+USB drive › Other › %s	Флешка › Інше › %s	Флешка › Другое › %s
+USB drive › Other	Флешка › Інше	Флешка › Другое
+Set as wallpaper	Зробити шпалерами	Сделать обоями
+Insert a USB drive to browse music, videos, photos and files.	Вставте флешку, щоб переглядати музику, відео, фото й файли.	Вставьте флешку, чтобы смотреть музыку, видео, фото и файлы.
+%.1f GB free of %.0f GB	вільно %.1f ГБ з %.0f ГБ	свободно %.1f ГБ из %.0f ГБ
+%d tracks	%d трек|%d треки|%d треків	%d трек|%d трека|%d треков
+%d videos	%d відео|%d відео|%d відео	%d видео|%d видео|%d видео
+%d photos	%d фото|%d фото|%d фото	%d фото|%d фото|%d фото
+All files on drive	Усі файли на флешці	Все файлы на флешке
+Scanning…	Сканування…	Сканирование…
+Video file · %.40s	Відеофайл · %.40s	Видеофайл · %.40s
+%d items	%d об'єкт|%d об'єкти|%d об'єктів	%d объект|%d объекта|%d объектов
+Current wallpaper	Поточні шпалери	Текущие обои
+Alarm speed	Швидкість сигналу	Скорость сигнала
+Lights	Світло	Свет
+Security	Безпека	Безопасность
+Driving	Їзда	Вождение
+Auto light	Автосвітло	Автосвет
+Headlights turn on when it gets dark	Фари вмикаються, коли темніє	Фары включаются, когда темнеет
+Daytime Running Lights	Денні ходові вогні	Дневные ходовые огни
+DRL	ДХВ	ДХО
+Lock confirmation	Сигнал замикання	Сигнал запирания
+Signal when the car locks	Коли авто замикається	Когда машина запирается
+Lights + Horn	Фари+звук	Фары+звук
+Lights only	Фари	Фары
+Instrument backlight	Підсвітка приладів	Подсветка приборов
+Speed alarm	Сигнал швидкості	Сигнал скорости
+Chime when you drive faster than the set speed	Сигнал, коли швидкість вища за задану	Сигнал, когда скорость выше заданной
+%d km/h	%d км/год	%d км/ч
+Instrument cluster	Панель приладів	Приборная панель
+Language	Мова	Язык
+Instrument time	Час на приладах	Время приборов
+Browse USB Files	Файли на флешці	Файлы на флешке
+No videos on USB drive	Немає відео на флешці	Нет видео на флешке
+Add MP4, MKV or AVI files to the drive and plug it in again.	Додайте на флешку файли MP4, MKV або AVI і вставте її знову.	Добавьте на флешку файлы MP4, MKV или AVI и вставьте её снова.
+%d videos · USB drive	%d відео · флешка|%d відео · флешка|%d відео · флешка	%d видео · флешка|%d видео · флешка|%d видео · флешка
+Insert a USB drive with videos	Вставте флешку з відео	Вставьте флешку с видео
+Video file · USB	Відеофайл · USB	Видеофайл · USB
+Video · USB	Відео · USB	Видео · USB
+Dusk	Сутінки	Сумерки
+Ocean	Океан	Океан
+Aurora	Сяйво	Сияние
+Forest	Ліс	Лес
+Graphite	Графіт	Графит
+Sunset	Захід	Закат
+Lagoon	Лагуна	Лагуна
+Midnight	Північ	Полночь
+Ember	Жар	Угли
+Rose	Троянда	Роза
+Sand	Пісок	Песок
+Face	В обличчя	В лицо
+Face + Feet	Обличчя + ноги	Лицо + ноги
+Feet	У ноги	В ноги
+Feet + Screen	Ноги + скло	Ноги + стекло
+Windscreen	На скло	На стекло
+Close	Закрити	Закрыть
+Safe to remove	Можна виймати	Можно извлечь
+Muted	Без звуку	Без звука
+Temperature	Температура	Температура
+Fan	Обдув	Обдув
+Air	Повітря	Воздух
+Recirculation	Рециркуляція	Рециркуляция
+Fresh air	Свіже повітря	Свежий воздух
+Airflow	Напрямок обдуву	Направление обдува
+Defaults restored	Налаштування скинуто	Настройки сброшены
+Updated	Оновлено	Обновлено
+Can’t open	Не вдалося відкрити	Не удалось открыть
+Can't open	Не вдалося відкрити	Не удалось открыть
+Incoming call · %s	Вхідний виклик · %s	Входящий вызов · %s
+Decline	Відхилити	Отклонить
+Accept	Прийняти	Принять
+Launching…	Запуск…	Запуск…
+Lua script · USB	Скрипт Lua · USB	Скрипт Lua · USB
+Start music on %s, or tap play	Увімкніть музику (%s) або натисніть «Грати»	Включите музыку (%s) или нажмите «Играть»
+No music on USB drive	Немає музики на флешці	Нет музыки на флешке
+Connect a phone over Bluetooth	Підключіть телефон через Bluetooth	Подключите телефон по Bluetooth
+This drive has no audio files	На флешці немає аудіофайлів	На флешке нет аудиофайлов
+Insert a USB drive with music	Вставте флешку з музикою	Вставьте флешку с музыкой
+Running app	Програма	Программа
+Full screen	На весь екран	На весь экран
+phone	телефон	телефон
+eq:Middle	Середні	Средние
+Reset to defaults	Скинути	Сбросить
+Blue	Синій	Синий
+Teal	Бірюзовий	Бирюзовый
+Green	Зелений	Зелёный
+Orange	Помаранчевий	Оранжевый
+Red	Червоний	Красный
+Pink	Рожевий	Розовый
+Purple	Фіолетовий	Фиолетовый
+Connect an iPhone via USB	Підключіть iPhone через USB	Подключите iPhone по USB
+Connect an Android phone via USB	Підключіть Android через USB	Подключите Android по USB
+Insert a USB drive with photos	Вставте флешку з фото	Вставьте флешку с фото
+This drive has no photos	На флешці немає фото	На флешке нет фото
+No photos	Немає фото	Нет фото
+%d apps · USB drive › apps + builtin	%d програма · флешка › apps + вбудовані|%d програми · флешка › apps + вбудовані|%d програм · флешка › apps + вбудовані	%d программа · флешка › apps + встроенные|%d программы · флешка › apps + встроенные|%d программ · флешка › apps + встроенные
+%d apps · builtin	%d вбудована програма|%d вбудовані програми|%d вбудованих програм	%d встроенная программа|%d встроенные программы|%d встроенных программ
+Auto · phone decides	Авто · вирішує телефон	Авто · решает телефон
+Off · Bluetooth only	Вимк · лише Bluetooth	Выкл · только Bluetooth
+Ready	Готово	Готово
+Streaming	Трансляція	Трансляция
+Paused	Пауза	Пауза

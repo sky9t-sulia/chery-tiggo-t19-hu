@@ -1,0 +1,9 @@
+# Ubuntu 14.04 = glibc 2.19 + gcc 4.8, as on the device (Poky 1.6.2 / eglibc 2.19 / gcc 4.8.2)
+FROM docker.io/library/ubuntu:14.04
+RUN sed -i -e '/security\|backports/d' /etc/apt/sources.list \
+ && apt-get update && apt-get install -y --no-install-recommends \
+      gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf make pkg-config file ca-certificates \
+      qemu-user libwayland-dev libegl1-mesa-dev libgles2-mesa-dev \
+ && rm -rf /var/lib/apt/lists/*
+ENV SYSROOT=/sysroot
+WORKDIR /work

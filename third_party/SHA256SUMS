@@ -1,0 +1,6 @@
+594c2fe35d49488b4382dbfaec8f98366defca819d916ac95becf3e75f4200b3  stb_image.h
+cbd5f0ad7a9cf4468affb36354a1d2338034f2c12473cf1a8e32053cb6914a05  stb_image_write.h
+ecd30b05e0dd4fea3a13c26810dd9e1992dc379049482c393d5a19e6b5090aab  stb_truetype.h
+b51cc0cb5ac082465004dc89422ebda439b053fdffbcf6baf8a6336a3288759f  libjpeg8/jpeglib.h
+fce3a180e48bb49a5f8f5965a840b34774e7f194a8b3ba9159c7d5d39b347835  libjpeg8/jmorecfg.h
+9fbf5e28ef86c69858f6d3d34eccc32e911c1a28b4120ff3e84aaa70cfbf1e30  lua-5.4.7.tar.gz (www.lua.org/ftp, src/ без lua.c luac.c)

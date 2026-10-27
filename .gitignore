@@ -1,0 +1,9 @@
+/version
+/build/
+/assets/
+/boot/huboot
+/res/icons/
+/res/test_wall.png
+src/aa_cert.h
+*.pyc
+__pycache__/

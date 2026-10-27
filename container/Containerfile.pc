@@ -1,0 +1,13 @@
+# Build and run our renderer on the PC: gcc + Wayland (xdg-shell) + Mesa EGL/GLES2 (AMD GPU),
+# plus asset preparation tools (SVG rasterization, PIL), GStreamer 1.0 - player check (video/audio) on the PC,
+# weston - our own invisible (headless) compositor for checks that do not depend on the PC screen.
+FROM registry.fedoraproject.org/fedora:44
+RUN dnf -y install --setopt=install_weak_deps=False \
+      gcc make pkgconf-pkg-config wayland-devel wayland-protocols-devel \
+      mesa-libEGL-devel mesa-libGLES-devel mesa-dri-drivers \
+      librsvg2-tools python3-pillow python3-numpy libasan libubsan \
+      gstreamer1 gstreamer1-plugins-base gstreamer1-plugins-good gstreamer1-plugins-bad-free \
+      gstreamer1-plugin-libav gstreamer1-plugin-openh264 pipewire-alsa alsa-plugins-pulseaudio \
+      weston \
+ && dnf clean all
+WORKDIR /work

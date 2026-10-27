@@ -1,0 +1,24 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides: tiggo-rescue
+# Default-Start: 5
+### END INIT INFO
+# tiggo: SSH that depends on no shell and no USB stick - everything crashed, connect a phone in
+# USB modem mode - SSH is available. NAND: /etc/init.d/tiggo-rescue + link /etc/rc5.d/S03tiggo-rescue (before ShincoService
+# and weston), files in /etc/tiggo; runs from RAM (/dev/tiggo), does not write to NAND, does not delay boot:
+#  - network: when a phone is connected it brings itself up (net-usb.sh + dhcp.sh);
+#  - sshd (127.0.0.1 only, PC key) + reverse tunnel to the PC (pc_addr).
+SRC=/etc/tiggo
+RUN=/dev/tiggo
+
+case "$1" in
+  start)
+    mkdir -p $RUN && cp $SRC/* $RUN/ && chmod 700 $RUN && chmod 600 $RUN/* && chmod 700 $RUN/*.sh
+    HU_DIR=$RUN nohup $RUN/net-usb.sh 2>>$RUN/net.log >/dev/null &
+    /usr/sbin/sshd -f $RUN/sshd_config
+    nohup $RUN/tunnel.sh > $RUN/tunnel.log 2>&1 &
+    ;;
+  stop)
+    ;;
+esac
+exit 0

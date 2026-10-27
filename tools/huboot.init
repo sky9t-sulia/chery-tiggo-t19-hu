@@ -1,0 +1,16 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides: huboot
+# Default-Start: S
+### END INIT INFO
+# Boot screen (huboot, design v34 Boot) - the very first in rcS (S01), in the background: does not delay boot.
+# hu closes it before the first frame (or tiggo before the stock UI); on its own after 120 s.
+# NAND: /etc/init.d/huboot + link /etc/rcS.d/S01huboot. Rollback: rm /etc/rcS.d/S01huboot
+B=/home/root/tiggo-hu/huboot
+case "$1" in
+  start)
+    # huboot detaches the console from the screen itself: /sys is not mounted yet here (S01)
+    [ -x $B ] && $B < /dev/null > /dev/null 2>&1 & ;;
+  stop) killall huboot 2> /dev/null ;;
+esac
+exit 0

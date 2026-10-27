@@ -1,0 +1,96 @@
+#!/bin/sh
+#
+### BEGIN INIT INFO
+# Provides: tiggo
+# Required-Start: $local_fs $remote_fs
+# Required-Stop: $local_fs $remote_fs
+# Default-Start:      5
+# Default-Stop:      5
+### END INIT INFO
+# tiggo: instead of the stock S08shincoservice (owner 2026-10-24: without the STOCK stick there is no stock software at all - no ShincoService,
+# no cameradetect, no weston/ShellApp). Hardware - like stock, in order; then our shell right away (start.sh): without
+# MCU keep-alive for ~20 s the MCU reboots the HU - we do not wait for the USB stick. The stick is checked in parallel: STOCK - our shell stops, the whole stock stack
+# (stock S08 programs - "tiggo stock", + weston). Hardware (GPIO, drivers) - only here
+# and only once: the stock S08 is not run a second time (gpio41 low -> high may reset the MCU, NOTES_mcu.md).
+# NAND: /etc/init.d/tiggo, link /etc/rc5.d/S08tiggo; stock S08shincoservice -> /etc/init.d/shincoservice.stock (rollback).
+# Rollback: mount -o remount,rw /; rm /etc/rc5.d/S08tiggo; cp -p /etc/init.d/shincoservice.stock /etc/rc5.d/S08shincoservice;
+#        sync; mount -o remount,ro /
+HU=/home/root/tiggo-hu
+
+# stock S08 programs (without hardware - it is already done in hw): ShincoService (MCU keep-alive), camera, CarPlay (conver),
+# applink partition. Called here (STOCK stick) and from start.sh (our shell gave up): "tiggo stock"
+stock_apps() {
+    [ -f /etc/profile.d/dbus.sh ] && . /etc/profile.d/dbus.sh   # session D-Bus address (the session D-Bus itself is started in hw)
+    pidof ShincoService > /dev/null || ShincoService &
+    pidof cameradetect > /dev/null || cameradetect.sh &
+    pidof conver > /dev/null || platform=T17RELEASE conver &
+    mkdir -p /media/mtd7
+    grep -q " /media/mtd7 " /proc/mounts || { ubiattach /dev/ubi_ctrl -m 7 -d 3; mount -t ubifs ubi3:applink /media/mtd7; }
+    mkdir -p /var/linkdisk
+    grep -q " /var/linkdisk " /proc/mounts || mount -t tmpfs -o size=20m tmpfs /var/linkdisk
+} > /dev/null 2>&1
+
+stock() {
+    mkdir /dev/hu.stock 2>/dev/null || return 0         # once (start.sh: our shell gave up - same path)
+    echo "tiggo: $1 - stock" > /dev/hu.stock/why
+    killall hu-run.sh 2>/dev/null; killall hu 2>/dev/null; sleep 1; killall -9 hu 2>/dev/null
+    killall huboot 2>/dev/null                          # boot screen - the stock UI draws its own
+    stock_apps
+    TIGGO_WESTON=1 /etc/init.d/weston start             # S09 does not start the stock UI at boot - only this way
+}
+
+hw() {
+    # like the stock S08, without ShincoService. First the GPIOs that stock sets before the deferred drivers, and the
+    # drivers themselves (USB etc.): SSH (S03, net-usb.sh) waits for USB - nothing before that may break the script.
+    # Then the data partitions (settings, BT pairings), session D-Bus and the rest
+    echo 56 > /sys/class/gpio/export; echo high > /sys/class/gpio/gpio56/direction
+    echo 91 > /sys/class/gpio/export; echo low > /sys/class/gpio/gpio91/direction
+    echo 87 > /sys/class/gpio/export; echo high > /sys/class/gpio/gpio87/direction
+    cat /proc/deferred_initcalls > /dev/null &          # like stock - in the background; wait up to 10 s (driver hung - move on)
+    di=$!; n=0; while [ $n -lt 20 ] && kill -0 $di 2>/dev/null; do sleep 0.5; n=$((n + 1)); done
+    /usr/bin/datamount.sh
+    [ -f /etc/profile.d/dbus.sh ] && . /etc/profile.d/dbus.sh
+    [ -n "$DBUS_SESSION_BUS_ADDRESS" ] && dbus-daemon --session --address=${DBUS_SESSION_BUS_ADDRESS} &
+    echo 84 > /sys/class/gpio/export; echo rising > /sys/class/gpio/gpio84/edge
+    echo 55 > /sys/class/gpio/export; echo in > /sys/class/gpio/gpio55/direction
+    echo 57 > /sys/class/gpio/export; echo low > /sys/class/gpio/gpio57/direction
+    echo 132 > /sys/class/gpio/export; echo both > /sys/class/gpio/gpio132/edge
+    echo 128 > /sys/class/gpio/export; echo both > /sys/class/gpio/gpio128/edge
+    echo 41 > /sys/class/gpio/export; echo low > /sys/class/gpio/gpio41/direction
+    (sleep 1; echo 1 > /sys/class/gpio/gpio41/value) &
+    echo 30000 > /proc/sys/vm/min_free_kbytes
+    echo 1 > /proc/sys/vm/lowmem_reserve_ratio
+    checkbtaddr.sh &
+    echo 819200 > /proc/sys/net/core/wmem_max
+    echo 819200 > /proc/sys/net/core/rmem_max
+    echo 409600 > /proc/sys/net/core/wmem_default
+    echo 409600 > /proc/sys/net/core/rmem_default
+    echo "212644 524288 1048576" > /proc/sys/net/ipv4/tcp_wmem
+    echo "212644 524288 1048576" > /proc/sys/net/ipv4/tcp_rmem
+    echo "15843 21126 31686" > /proc/sys/net/ipv4/tcp_mem
+} > /dev/null 2>&1
+
+# USB stick with a STOCK file (in the root or in tiggo/): USB has just appeared - wait up to 4 s for the disk, up to 3 s for mounting (udev).
+# In the background: our shell is already starting
+marker() {
+    n=0; while [ $n -lt 8 ] && ! ls /sys/block/ | grep -q "^sd"; do sleep 0.5; n=$((n + 1)); done
+    ls /sys/block/ | grep -q "^sd" || return 1
+    n=0; while [ $n -lt 6 ] && ! grep -q " /media/usb" /proc/mounts; do sleep 0.5; n=$((n + 1)); done
+    for f in /media/usb*-sd*/STOCK /media/usb*-sd*/tiggo/STOCK; do [ -f "$f" ] && return 0; done
+    return 1
+}
+
+case "$1" in
+  start)
+    hw
+    if [ ! -f $HU/start.sh ]; then stock "no $HU"
+    else
+        ( sh $HU/start.sh > /dev/null 2>&1 & )
+        ( marker && stock "STOCK stick" ) > /dev/null 2>&1 &
+    fi
+  ;;
+  stock) stock_apps ;;
+  stop) killall hu-run.sh hu 2>/dev/null ;;
+  *) echo "usage: $0 { start | stock | stop }" ;;
+esac
+exit 0
