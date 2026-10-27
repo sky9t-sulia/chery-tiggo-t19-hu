@@ -5,6 +5,9 @@ written in C on OpenGL ES 2 and running directly on the Vivante framebuffer — 
 The UI runs at 60 Hz (vsync to the 60 Hz panel), with animations and blur; it redraws only what changed.
 The stock firmware stays on the unit and can still be booted.
 
+> **Android Auto — wired (USB) and wireless (Wi-Fi) — is implemented from scratch** and works on this 2019 head unit,
+> which never had Android Auto from the factory. **Apple CarPlay is in development.**
+
 ![Home screen](docs/screenshot-home.png)
 
 <img src="docs/screenshot-apps.png" width="49%" alt="Apps"> <img src="docs/screenshot-radio.png" width="49%" alt="Radio">
@@ -17,8 +20,9 @@ Flashing anything to a head unit can brick it — use at your own risk.
 - **Home / dashboard**, apps grid, settings, display, vehicle info, light and dark themes, English / Ukrainian / Russian UI.
 - **Media:** USB music and video (hardware VPU decoding), album art with a blurred art background, FM/AM radio.
 - **Bluetooth** through the stock nFore stack: calls, phone book, A2DP music with AVRCP metadata.
-- **Android Auto**, wired (USB AOA) and wireless (Bluetooth RFCOMM + 5 GHz Wi-Fi AP on an RTL8811AU dongle):
+- **Android Auto (implemented)**, wired (USB AOA) and wireless (Bluetooth RFCOMM + 5 GHz Wi-Fi AP on an RTL8811AU dongle):
   video, audio, touch, media metadata and keys, and sensors (speed, night mode, driving status, steering angle, headlights).
+- **Apple CarPlay (in development).**
 - **Car data** from the body MCU over UART (`/dev/ttymxc2`): speed, climate, lights, steering, the rotary knob,
   steering-wheel keys, reverse camera with dynamic guide lines.
 - **Lua apps** (`apps/`).
