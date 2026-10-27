@@ -5,6 +5,7 @@ written in C on OpenGL ES 2 and running directly on the Vivante framebuffer — 
 The stock firmware stays on the unit and can still be booted.
 
 ![Home screen](docs/screenshot-home.png)
+![Apps](docs/screenshot-apps.png)
 
 Personal project for one car. Nothing here is affiliated with or endorsed by Chery, Shinco, Neusoft or Google.
 Flashing anything to a head unit can brick it — use at your own risk.
