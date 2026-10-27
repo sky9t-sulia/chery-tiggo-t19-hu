@@ -34,6 +34,7 @@ Main board 1710-1375-3H (Shinco):
 | Voice DSP | Fortemedia FM1388 |
 | Bluetooth | CSR BlueCore (`U901`, marking `6311`), BCSP over UART5 `ttymxc4`; stock nFore stack on top |
 | Camera video decoder | Analog Devices ADV7182 (`U700`, marking `ADV7182 BCPZ`), kernel driver `adv7180` |
+| USB port power | TI TPS254900-Q1 (marking `254900Q`): USB charging port controller, short-to-battery protection |
 | Display | 1024x600 LVDS panel |
 
 Not identified: the audio power amplifier under the bracket. Empty footprints `U207` (BGA), `U770` (QFP64), `U800`.
