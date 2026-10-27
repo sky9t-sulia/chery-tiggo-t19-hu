@@ -22,7 +22,8 @@ Flashing anything to a head unit can brick it — use at your own risk.
 ## Hardware
 
 Main board 1710-1375-3H (Shinco): NXP i.MX6 DualLite (`MCIMX6U6AVM08AC`), Renesas RH850 body MCU (CAN, talks to
-the i.MX6 over UART), Fortemedia FM1388 voice DSP, NAND, 1024x600 LVDS panel, nFore Bluetooth module.
+the i.MX6 over UART), Fortemedia FM1388 voice DSP, NAND, 1024x600 LVDS panel, CSR BlueCore Bluetooth chip (`U901`, marking `6311`; BCSP over UART5 `ttymxc4`,
+stock nFore stack on top).
 
 <img src="docs/board-front.jpg" width="400" alt="Front of the main board">
 
