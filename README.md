@@ -4,6 +4,8 @@ A from-scratch replacement for the stock UI of the 2019 Chery Tiggo 4 (platform 
 written in C on OpenGL ES 2 and running directly on the Vivante framebuffer — no Qt, no Weston.
 The stock firmware stays on the unit and can still be booted.
 
+![Home screen](docs/screenshot-home.png)
+
 Personal project for one car. Nothing here is affiliated with or endorsed by Chery, Shinco, Neusoft or Google.
 Flashing anything to a head unit can brick it — use at your own risk.
 
