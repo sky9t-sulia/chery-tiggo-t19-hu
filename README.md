@@ -19,6 +19,13 @@ Flashing anything to a head unit can brick it — use at your own risk.
 - **Lua apps** (`apps/`).
 - Boot splash (`boot/huboot`), crash handler with a backtrace, a watchdog that restarts the shell on a crash.
 
+## Hardware
+
+Main board 1710-1375-3H (Shinco): NXP i.MX6 DualLite (`MCIMX6U6AVM08AC`), Renesas RH850 body MCU (CAN, talks to
+the i.MX6 over UART), Fortemedia FM1388 voice DSP, NAND, 1024x600 LVDS panel, nFore Bluetooth module.
+
+<img src="docs/board-front.jpg" width="400" alt="Front of the main board">
+
 ## Layout
 
 | Path | What |
