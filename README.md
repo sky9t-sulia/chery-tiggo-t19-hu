@@ -52,6 +52,38 @@ a sysroot: the root filesystem dumped from **your** head unit's NAND. Stock firm
 
 **Wi-Fi driver and hostapd** for wireless Android Auto are built separately, see `wifi/README.md`.
 
+## Getting started: root over the UART console
+
+The kernel console and U-Boot are on **UART4** of the i.MX6 (`ttymxc3`), 115200 8N1.
+
+1. Connect a **3.3 V** USB–UART (TTL) adapter to the UART4 pads on the main board: adapter RX ← board TX,
+   adapter TX → board RX, GND ↔ GND. Do not connect the adapter's VCC, and do not use a 5 V adapter.
+2. Open a terminal on the adapter (`picocom -b 115200 /dev/ttyUSB0`), switch the head unit on and keep pressing
+   **Space** until the U-Boot prompt `=>` appears (there is no "Hit any key" message).
+3. Boot into a root shell (only for this boot, nothing is saved to the U-Boot environment):
+   ```
+   setenv bootargs ${bootargs} init=/bin/sh; boot
+   ```
+4. In the shell, bring up what init would normally do; `deferred_initcalls` is required, otherwise USB host does not work:
+   ```
+   mount -t proc proc /proc; mount -t sysfs sys /sys
+   cat /proc/deferred_initcalls
+   ```
+5. **Back up the whole NAND first** (USB stick mounted at `/mnt`):
+   ```
+   mount /dev/sda1 /mnt; cd /mnt
+   for n in $(seq 0 11); do nanddump -q --bb=padbad -f mtd$n.bin /dev/mtd$n; done
+   dd if=/dev/mtd12 of=mtd12.bin bs=4096; md5sum mtd*.bin > md5.txt; sync
+   ```
+   `cat /proc/mtd` lists the partitions. The root filesystem is `mtd11` (`rootfs`, UBI); on the PC
+   `ubireader_extract_files -o rootfs mtd11.bin` unpacks it; `rootfs/<number>/rootfs` is the `SYSROOT` for the ARM build.
+   The root is mounted read-only: `mount -o remount,rw /` before changing anything.
+6. Set up SSH access (an `sshd` with your key, and `tools/rescue/` for a reverse tunnel over phone USB tethering),
+   then use the installer below.
+
+The MCU reboots the head unit if it gets no keep-alive for ~15 s, but only after the first keep-alive, so an
+`init=/bin/sh` boot without the shell running stays up indefinitely.
+
 ## Installing on the head unit
 
 Needs root SSH access to the head unit (the HU reaches the PC through a phone's USB tethering and a reverse SSH tunnel,
