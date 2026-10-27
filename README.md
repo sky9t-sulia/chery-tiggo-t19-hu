@@ -37,7 +37,7 @@ Main board 1710-1375-3H (Shinco):
 | USB port power | TI TPS254900-Q1 (marking `254900Q`): USB charging port controller, short-to-battery protection |
 | Display | 1024x600 LVDS panel |
 
-Not identified: the audio power amplifier under the bracket. Empty footprints `U207` (BGA), `U770` (QFP64), `U800`.
+Empty footprints `U207` (BGA), `U770` (QFP64), `U800`.
 
 <img src="docs/board-front.jpg" width="400" alt="Front of the main board">
 
