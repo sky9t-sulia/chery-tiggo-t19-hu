@@ -16,16 +16,15 @@ Flashing anything to a head unit can brick it — use at your own risk.
 
 ## What it does
 
-- **Home / dashboard**, apps grid, settings, display, vehicle info, light and dark themes, English / Ukrainian / Russian UI.
-- **Media:** USB music and video (hardware VPU decoding), album art with a blurred art background, FM/AM radio.
-- **Bluetooth** through the stock nFore stack: calls, phone book, A2DP music with AVRCP metadata.
-- **Android Auto (implemented)**, wired (USB AOA) and wireless (Bluetooth RFCOMM + 5 GHz Wi-Fi AP on an RTL8811AU dongle):
-  video, audio, touch, media metadata and keys, and sensors (speed, night mode, driving status, steering angle, headlights).
+- **Android Auto (implemented)** — over USB cable or wireless. Wireless needs a small USB Wi-Fi dongle
+  (TP-Link Archer T2U Nano). Music info, album art and steering-wheel keys work, the map switches to night mode with the headlights.
 - **Apple CarPlay (in development).**
-- **Car data** from the body MCU over UART (`/dev/ttymxc2`): speed, climate, lights, steering, the rotary knob,
-  steering-wheel keys, reverse camera with dynamic guide lines.
-- **Lua apps** (`apps/`).
-- Boot splash (`boot/huboot`), crash handler with a backtrace, a watchdog that restarts the shell on a crash.
+- **Music and video** from a USB stick, with album art; FM/AM radio with favorites.
+- **Bluetooth phone:** calls, contacts, call history, music from the phone.
+- **Car:** climate control bar, speed, vehicle settings, steering-wheel keys and the rotary knob,
+  rear camera with guide lines that follow the steering wheel.
+- Home screen, apps, wallpapers, light and dark themes; English, Ukrainian and Russian.
+- Small Lua apps (calculator, terminal and your own).
 
 ## Hardware
 
