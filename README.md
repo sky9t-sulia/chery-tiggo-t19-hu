@@ -6,6 +6,7 @@ The stock firmware stays on the unit and can still be booted.
 
 ![Home screen](docs/screenshot-home.png)
 ![Apps](docs/screenshot-apps.png)
+![Radio](docs/screenshot-radio.png)
 
 Personal project for one car. Nothing here is affiliated with or endorsed by Chery, Shinco, Neusoft or Google.
 Flashing anything to a head unit can brick it — use at your own risk.
