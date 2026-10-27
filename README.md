@@ -33,10 +33,10 @@ Main board 1710-1375-3H (Shinco):
 | Radio / audio processor | NXP TEF6635, controlled by the MCU |
 | Voice DSP | Fortemedia FM1388 |
 | Bluetooth | CSR BlueCore (`U901`, marking `6311`), BCSP over UART5 `ttymxc4`; stock nFore stack on top |
+| Camera video decoder | Analog Devices ADV7182 (`U700`, marking `ADV7182 BCPZ`), kernel driver `adv7180` |
 | Display | 1024x600 LVDS panel |
 
-Not identified: `U700` (small QFN next to a crystal, possibly the ADV7180 camera decoder) and the audio power amplifier
-under the bracket. Empty footprints `U207` (BGA), `U770` (QFP64), `U800`.
+Not identified: the audio power amplifier under the bracket. Empty footprints `U207` (BGA), `U770` (QFP64), `U800`.
 
 <img src="docs/board-front.jpg" width="400" alt="Front of the main board">
 
