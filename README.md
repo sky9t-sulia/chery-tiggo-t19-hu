@@ -21,9 +21,22 @@ Flashing anything to a head unit can brick it — use at your own risk.
 
 ## Hardware
 
-Main board 1710-1375-3H (Shinco): NXP i.MX6 DualLite (`MCIMX6U6AVM08AC`), Renesas RH850 body MCU (CAN, talks to
-the i.MX6 over UART), Fortemedia FM1388 voice DSP, NAND, 1024x600 LVDS panel, CSR BlueCore Bluetooth chip (`U901`, marking `6311`; BCSP over UART5 `ttymxc4`,
-stock nFore stack on top).
+Main board 1710-1375-3H (Shinco):
+
+| Part | Chip |
+|---|---|
+| SoC | NXP i.MX6 DualLite `MCIMX6U6AVM08AC` |
+| PMIC | NXP PF0200 (marking `SMPF0200`) |
+| RAM | 2 × Micron DDR3 (`U204`, `U205`, FBGA code `D9SHJ`), 1 GB total |
+| NAND | Micron `MT29F8G08ABABA` (`U206`), 8 Gbit = 1 GB SLC |
+| Body MCU | Renesas RH850 (`U400`, marking removed): CAN, talks to the i.MX6 over UART |
+| Radio / audio processor | NXP TEF6635, controlled by the MCU |
+| Voice DSP | Fortemedia FM1388 |
+| Bluetooth | CSR BlueCore (`U901`, marking `6311`), BCSP over UART5 `ttymxc4`; stock nFore stack on top |
+| Display | 1024x600 LVDS panel |
+
+Not identified: `U700` (small QFN next to a crystal, possibly the ADV7180 camera decoder) and the audio power amplifier
+under the bracket. Empty footprints `U207` (BGA), `U770` (QFP64), `U800`.
 
 <img src="docs/board-front.jpg" width="400" alt="Front of the main board">
 
