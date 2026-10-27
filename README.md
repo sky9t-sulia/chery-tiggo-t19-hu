@@ -56,8 +56,13 @@ a sysroot: the root filesystem dumped from **your** head unit's NAND. Stock firm
 
 The kernel console and U-Boot are on **UART4** of the i.MX6 (`ttymxc3`), 115200 8N1.
 
-1. Connect a **3.3 V** USB–UART (TTL) adapter to the UART4 pads on the main board: adapter RX ← board TX,
-   adapter TX → board RX, GND ↔ GND. Do not connect the adapter's VCC, and do not use a 5 V adapter.
+1. Connect a **3.3 V** USB–UART (TTL) adapter to the UART4 test pads on the back of the main board
+   (board 1710-1375-3H): `U4_RX` and `U4_TX`, next to connector `CON1400`. Adapter RX ← `U4_TX`,
+   adapter TX → `U4_RX`, adapter GND ↔ board ground (e.g. the `GND` pad nearby).
+   Do not connect the adapter's VCC, and do not use a 5 V adapter.
+
+   <img src="docs/uart4-closeup.jpg" width="480" alt="UART4 pads U4_RX / U4_TX"> <img src="docs/uart4-board.jpg" width="300" alt="Back of the main board">
+
 2. Open a terminal on the adapter (`picocom -b 115200 /dev/ttyUSB0`), switch the head unit on and keep pressing
    **Space** until the U-Boot prompt `=>` appears (there is no "Hit any key" message).
 3. Boot into a root shell (only for this boot, nothing is saved to the U-Boot environment):
