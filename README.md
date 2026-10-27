@@ -6,8 +6,8 @@ The UI runs at 60 Hz (vsync to the 60 Hz panel), with animations and blur; it re
 The stock firmware stays on the unit and can still be booted.
 
 ![Home screen](docs/screenshot-home.png)
-![Apps](docs/screenshot-apps.png)
-![Radio](docs/screenshot-radio.png)
+
+<img src="docs/screenshot-apps.png" width="49%" alt="Apps"> <img src="docs/screenshot-radio.png" width="49%" alt="Radio">
 
 Personal project for one car. Nothing here is affiliated with or endorsed by Chery, Shinco, Neusoft or Google.
 Flashing anything to a head unit can brick it — use at your own risk.
