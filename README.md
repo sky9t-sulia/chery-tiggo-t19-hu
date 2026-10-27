@@ -2,6 +2,7 @@
 
 A from-scratch replacement for the stock UI of the 2019 Chery Tiggo 4 (platform T19, Shinco i.MX6 DualLite head unit),
 written in C on OpenGL ES 2 and running directly on the Vivante framebuffer — no Qt, no Weston.
+The UI runs at 60 Hz (vsync to the 60 Hz panel), with animations and blur; it redraws only what changed.
 The stock firmware stays on the unit and can still be booted.
 
 ![Home screen](docs/screenshot-home.png)
