@@ -395,7 +395,6 @@ static void draw_base(void)
     time_t t = time(NULL);
     struct tm tm;
     int bat = conn_dev() != NULL;
-    float x0 = 52 - (bat ? 60 : 38) * 0.5f;           /* icons 16, gap 6: internet, [phone signal], BT */
     localtime_r(&t, &tm);
     snprintf(clk, sizeof clk, "%02d:%02d", tm.tm_hour, tm.tm_min);
 
@@ -403,17 +402,16 @@ static void draw_base(void)
     gfx_glass(0, 0, D(RAIL_W), D(750), 0, RAIL_TINT, RAIL_A, 0);
     gfx_rect(D(RAIL_W) - 1, 0, 1, D(750), 0, C_BORDER);
     t_top(700, 26, (RAIL_W - t_width(700, 26, clk) + 0.26f * 4) * 0.5f, 20, clk, C_TEXT, -0.26f);
-    if (A.net) ico("globe_w22", x0 + 8, 59 + 8, 16, C_SUB);
-    else ico("globe_off", x0 + 8, 59 + 8, 16, col_alpha(C_SUB, 0.45f));
-    x0 += 22;
-    if (bat) {   /* v13: phone signal 0..5 (HFP) - bars at >=1, >=2, >=4, >=5, the rest 0.3 */
+    {   /* status row under the clock (owner 2026-10-29): internet over USB (wired icon) · LTE · Bluetooth - one row, icons ~8 apart
+         * (centers 26 / 52 / 78, owner), top 63 (clock + 8 + 4), icons 18 (wired 19). Off / no phone = 0.4;
+         * phone signal 0..5 (HFP): bars at >=1, >=2, >=4, >=5, the rest 0.3 */
         static const char *SB[4] = { "sig1", "sig2", "sig3", "sig4" };
         static const int LV[4] = { 1, 2, 4, 5 };
         int k;
-        for (k = 0; k < 4; k++) ico(SB[k], x0 + 8, 59 + 8, 16, col_alpha(C_SUB, A.ph_sig >= LV[k] ? 1 : 0.3f));
-        x0 += 22;
+        ico("png_wired", 26, 73, 19, col_alpha(C_SUB, A.net ? 1 : 0.4f));
+        for (k = 0; k < 4; k++) ico(SB[k], 52, 73, 18, col_alpha(C_SUB, !bat ? 0.4f : A.ph_sig >= LV[k] ? 1 : 0.3f));
+        ico("bluetooth", 78, 73, 18, col_alpha(C_SUB, bat ? 1 : 0.4f));
     }
-    ico("bluetooth", x0 + 8, 59 + 8, 16, col_alpha(C_SUB, bat ? 1 : 0.4f));
     panel(ac_x, bb_y, ac_w, PILL_H, PILL_R);
     panel(tp_x, bb_y, tp_w, PILL_H, PILL_R);
     panel(fan_x, bb_y, fan_w, PILL_H, PILL_R);
@@ -2032,6 +2030,22 @@ static void draw_all(double now)
     video_fs_draw(now);
 }
 
+/* black rounded screen corners (owner 2026-10-29, radius = card radius PANEL_R): drawn last, over everything (AA, camera, Standby).
+ * A rect larger than the screen with an inside border as wide as the radius - its inner edge is the screen with radius PANEL_R;
+ * scissored to the four corner squares, so only ~22x22 px each is shaded */
+static void screen_corners(void)
+{
+    float r = D(PANEL_R);
+    int s = (int)ceilf(r), c;
+    for (c = 0; c < 4; c++) {
+        cur_sc[0] = c & 1 ? SCREEN_W - s : 0; cur_sc[1] = c & 2 ? SCREEN_H - s : 0; cur_sc[2] = s; cur_sc[3] = s; cur_sc_on = 1;
+        apply_scissor();
+        gfx_rect_border(-r, -r, SCREEN_W + 2 * r, SCREEN_H + 2 * r, 2 * r, hexa(0, 0), r, hexa(0, 1));
+    }
+    cur_sc_on = 0;
+    apply_scissor();
+}
+
 int ui_frame(double now, int age)
 {
     int i, j, k, quiet;
@@ -2046,6 +2060,7 @@ int ui_frame(double now, int age)
             gfx_frame_begin();
             cur_sc_on = 0; apply_scissor();
             standby_draw(now - sb_t0, 1, tw_get(&sb_glow, now), tw_get(&sb_clk, now));
+            screen_corners();
             gfx_frame_end();
             for (k2 = 0; k2 < HIST; k2++) hist_full[k2] = 1;    /* afterwards - the whole UI */
             base_dirty_f = screen_dirty_f = 1;
@@ -2112,6 +2127,7 @@ int ui_frame(double now, int age)
         cur_sc_on = 0;
         apply_scissor();
     }
+    screen_corners();
     gfx_frame_end();
 
     memmove(&hist[1], &hist[0], sizeof(hist[0]) * (HIST - 1));

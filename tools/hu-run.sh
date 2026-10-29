@@ -34,7 +34,9 @@ n=0; t0=$(date +%s)
 while true; do
     [ -f "$DIR/hu.new" ] && mv "$DIR/hu.new" "$DIR/hu" && chmod +x "$DIR/hu"
     fbcon_off
+    [ -d /dev/hu.stock ] && exit 0                # stock UI selected (STOCK stick / tiggo.init stock()) - never start hu again
     "$DIR/hu"; rc=$?
+    [ -d /dev/hu.stock ] && exit 0                # hu was stopped for the stock UI - do not restart it
     [ -f "$DIR/hu.new" ] && continue              # stopped for an update - go straight to the new one
     [ $rc -eq 0 ] && exit 0                       # normal exit (SIGTERM/SIGINT)
     now=$(date +%s)
